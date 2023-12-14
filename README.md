@@ -10,7 +10,6 @@ Le projet contient les fichiers suivants :
 - `arbres.tex` : Ce fichier contient des informations sur les arbres, y compris les arbres binaires et les arbres binaires de recherche (BST).
 - `graphes.tex` : Ce fichier contient des informations sur les graphes.
 - `comparaison.tex` : Ce fichier compare les arbres, les BST et les tas.
-- `darkmode.sty` : Un package LaTeX pour activer le mode sombre.
 - `.build` : Un script shell pour compiler le document LaTeX en PDF.
 
 ## Compilation
