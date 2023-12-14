@@ -1,0 +1,226 @@
+\subsection{Généralités sur les Arbres}\label{subsec:generalites-sur-les-arbres}
+
+\subsubsection{Définitions}
+Un arbre est une structure de données hiérarchique composée de nœuds, où chaque nœud peut avoir zéro ou plusieurs enfants.
+Un arbre ne contient pas de cycles, et il y a un seul chemin entre deux nœuds quelconques.
+
+\subsubsection{Types d'arbres}
+\begin{itemize}
+    \item \textbf{Arbre binaire} : Chaque nœud a au plus deux enfants.
+    \item \textbf{Arbre binaire complet} : Tous les niveaux, sauf éventuellement le dernier, sont entièrement remplis.
+    \item \textbf{Arbre binaire équilibré} : La différence de hauteur entre les sous-arbres gauche et droit de tout nœud est au plus un.
+\end{itemize}
+
+\subsubsection{Applications des arbres}
+Les arbres sont utilisés dans de nombreuses applications comme les systèmes de gestion de bases de données, l'analyse syntaxique dans les compilateurs, les algorithmes de recherche, etc.
+
+\subsubsection{Terminologie des arbres}
+\begin{itemize}
+    \item \textbf{Racine} : Le nœud supérieur de l'arbre.
+    \item \textbf{Feuille} : Un nœud sans enfants.
+    \item \textbf{Branche} : Un nœud avec au moins un enfant.
+    \item \textbf{Hauteur} : Longueur du chemin le plus long de la racine à une feuille.
+\end{itemize}
+
+\subsubsection{Exemples concrets}
+Un exemple concret d'utilisation des arbres est la représentation des dossiers et fichiers dans un système d'exploitation, où chaque dossier est un nœud et les fichiers/dossiers qu'il contient sont ses enfants.
+
+\subsection{Arbres Binaires}\label{subsec:arbres-binaires}
+
+\subsubsection{Définitions et Propriétés}
+Un arbre binaire est un type spécial d'arbre dans lequel chaque nœud a au plus deux enfants, souvent désignés comme enfant gauche et enfant droit.
+Il est utilisé dans de nombreuses applications en informatique en raison de sa structure simple et efficace.
+
+\subsubsection{Représentation en C}
+\begin{lstlisting}[label={lst:imp_BT}]
+struct struct Node {
+    int data;
+    struct struct Node* left;
+    struct struct Node* right;
+};
+\end{lstlisting}
+Cette structure en C représente un nœud d'un arbre binaire avec une valeur de données, un pointeur vers le fils gauche et un pointeur vers le fils droit.
+
+    \subsubsection{Parcours d'arbres binaires}
+Les arbres binaires peuvent être parcourus de différentes manières :
+
+\paragraph{Parcours préfixe}
+Visite d'abord la racine, puis parcours du sous-arbre gauche, suivi du sous-arbre droit.
+\newline
+\begin{tikzpicture}[level distance=1.5cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=1.5cm}]
+  \node (A) {A}
+    child {node (B) {B}
+      child {node (D) {D}}
+      child {node (E) {E}}
+    }
+    child {node (C) {C}
+      child {node (F) {F}}
+      child {node (G) {G}}
+    };
+
+  % Parcours préfixe en rouge
+  \draw[->, red, -Stealth] (A) -- (B);
+  \draw[->, red, -Stealth] (B) -- (D);
+  \draw[->, red, -Stealth] (B) -- (E);
+  \draw[->, red, -Stealth] (A) -- (C);
+  \draw[->, red, -Stealth] (C) -- (F);
+  \draw[->, red, -Stealth] (C) -- (G);
+
+    \node [right=of A, yshift=-1.5cm, xshift=3.5cm] {A$\rightarrow$B$\rightarrow$D$\rightarrow$E$\rightarrow$C$\rightarrow$F$\rightarrow$G};
+
+
+\end{tikzpicture}
+
+\paragraph{Parcours infixe}
+Parcours d'abord le sous-arbre gauche, visite la racine, puis parcours le sous-arbre droit.
+\newline
+\begin{tikzpicture}[level distance=1.5cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=1.5cm}]
+  \node (A) {A}
+    child {node (B) {B}
+      child {node (D) {D}}
+      child {node (E) {E}}
+    }
+    child {node (C) {C}
+      child {node (F) {F}}
+      child {node (G) {G}}
+    };
+
+  % Parcours infixe en vert
+  \draw[->, green, -Stealth] (D) -- (B);
+  \draw[->, green, -Stealth] (B) -- (E);
+  \draw[->, green, -Stealth] (E) -- (A);
+  \draw[->, green, -Stealth] (A) -- (F);
+  \draw[->, green, -Stealth] (F) -- (C);
+  \draw[->, green, -Stealth] (C) -- (G);
+
+    \node [right=of A, yshift=-1.5cm, xshift=3.5cm] {D$\rightarrow$B$\rightarrow$E$\rightarrow$A$\rightarrow$F$\rightarrow$C$\rightarrow$G};
+
+\end{tikzpicture}
+
+\paragraph{Parcours postfixe}
+Parcours d'abord le sous-arbre gauche, puis le sous-arbre droit, et enfin visite la racine.
+\newline
+\begin{tikzpicture}[level distance=1.5cm,
+  level 1/.style={sibling distance=3cm},
+  level 2/.style={sibling distance=1.5cm}]
+  \node (A) {A}
+    child {node (B) {B}
+      child {node (D) {D}}
+      child {node (E) {E}}
+    }
+    child {node (C) {C}
+      child {node (F) {F}}
+      child {node (G) {G}}
+    };
+
+  % Parcours postfixe en bleu
+  \draw[->, blue, -Stealth] (D) -- (E);
+  \draw[->, blue, -Stealth] (E) -- (B);
+  \draw[->, blue, -Stealth] (B) -- (F);
+  \draw[->, blue, -Stealth] (F) -- (G);
+  \draw[->, blue, -Stealth] (G) -- (C);
+  \draw[->, blue, -Stealth] (C) -- (A);
+
+\node [right=of A, yshift=-1.5cm, xshift=3.5cm] {D$\rightarrow$E$\rightarrow$B$\rightarrow$F$\rightarrow$G$\rightarrow$C$\rightarrow$A};
+\end{tikzpicture}
+
+\subsection{Arbres Binaires de Recherche (BST)}\label{subsec:arbres-binaires-de-recherche-(bst)}
+
+\subsubsection{Définitions et Caractéristiques}
+Un Arbre Binaire de Recherche (BST) est un arbre binaire dans lequel chaque nœud a une clé, et pour chaque nœud, toutes les clés dans le sous-arbre gauche sont inférieures à la clé du nœud, et toutes les clés dans le sous-arbre droit sont supérieures.
+Cette propriété rend les BST efficaces pour la recherche et l'accès aux données.
+
+\subsubsection{Opérations sur les BST}
+Les opérations principales sur un BST incluent :
+\begin{itemize}
+    \item \textbf{Insertion} : Ajouter un nouvel élément tout en maintenant la propriété du BST.
+    \item \textbf{Recherche} : Trouver un élément dans le BST.
+    \item \textbf{Suppression} : Retirer un élément du BST.
+    \item \textbf{Parcours} : Parcourir les éléments du BST (préfixe, infixe, postfixe).
+\end{itemize}
+
+\newpage
+\subsubsection{Implémentation en C}
+\begin{lstlisting}[label={lst:imp_BST}]
+struct struct Node {
+    int key;
+    struct struct Node* left;
+    struct struct Node* right;
+};
+
+struct Node* createNode(int key) {
+    struct Node* newNode = (struct Node*) malloc(sizeof(struct Node));
+    newNode->key = key;
+    newNode->left = NULL;
+    newNode->right = NULL;
+    return newNode;
+}
+\end{lstlisting}
+Cette structure et fonction en C représentent un nœud de BST et la création d'un nouveau nœud.
+
+\subsubsection{Complexité des opérations}
+\begin{tabular}{|l|c|c|}
+\hline
+ & \textbf{En moyenne} & \textbf{Dans le pire des cas} \\
+\hline
+\textbf{Insertion} & O(log n) & O(n) \\
+\hline
+\textbf{Recherche} & O(log n) & O(n) \\
+\hline
+\textbf{Suppression} & O(log n) & O(n) \\
+\hline
+\end{tabular}
+La complexité dépend de l'équilibre de l'arbre.
+
+\subsubsection{Exemples et Applications}
+\begin{itemize}
+    \item \textbf{Systèmes de gestion de bases de données} : Pour des recherches et des accès rapides aux données.
+    \item \textbf{Algorithmes de tri} : Le tri par arbre est implémenté en utilisant des BST.
+    \item \textbf{Structures de données dynamiques} : Les BST permettent l'insertion et la suppression de données tout en maintenant l'ordre.
+\end{itemize}
+
+
+\subsection{Tas}\label{subsec:tas}
+
+\subsubsection{Définition et Types}
+Un tas est une structure de données arborescente complète utilisée principalement pour implémenter des files de priorité.
+Il existe deux types principaux de tas :
+\begin{itemize}
+    \item \textbf{Tas Max} : La clé à chaque nœud est supérieure aux clés de ses enfants.
+    \item \textbf{Tas Min} : La clé à chaque nœud est inférieure aux clés de ses enfants.
+\end{itemize}
+
+\subsubsection{Représentation en C}
+\begin{lstlisting}[label={lst:imp_heap}]
+struct Heap {
+    int* array;
+    int size;
+    int capacity;
+};
+\end{lstlisting}
+Cette structure en C représente un tas avec un tableau pour stocker les éléments, la taille actuelle et la capacité maximale.
+
+\subsubsection{Opérations sur les tas}
+Les principales opérations sur les tas incluent :
+\begin{itemize}
+    \item \textbf{Insertion} : Ajouter un nouvel élément tout en maintenant la propriété du tas.
+    \item \textbf{Suppression} : Retirer l'élément le plus élevé/bas (selon le type de tas).
+    \item \textbf{Heapify} : Réorganiser le tas pour maintenir ses propriétés après une opération.
+\end{itemize}
+
+\subsubsection{Tri par tas}
+Le tri par tas est un algorithme de tri efficace utilisant la structure de données du tas.
+Il consiste à construire un tas à partir des données à trier, puis à déplacer successivement le plus grand élément du tas à la fin du tableau non trié.
+
+\subsubsection{Applications des tas}
+\begin{itemize}
+    \item \textbf{Files de priorité} : Implémentation efficace pour gérer des éléments avec des priorités.
+    \item \textbf{Tri de données} : Le tri par tas est un algorithme de tri en place avec une bonne complexité moyenne.
+    \item \textbf{Algorithmes de graphe} : Comme dans l'algorithme de Dijkstra pour les chemins les plus courts.
+\end{itemize}
+
+\newpage

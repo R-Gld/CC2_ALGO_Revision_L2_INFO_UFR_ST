@@ -1,0 +1,113 @@
+\subsection{Généralités sur les Graphes}\label{subsec:generalites-sur-les-graphes}
+
+\subsubsection{Définitions et Types}
+Un graphe est une collection de nœuds (sommets) et d'arêtes qui relient ces nœuds.
+Il existe deux types principaux de graphes :
+\begin{itemize}
+    \item \textbf{Graphe non orienté} : Les arêtes n'ont pas de direction.
+    \item \textbf{Graphe orienté} : Les arêtes ont une direction définie.
+\end{itemize}
+
+\subsubsection{Représentations des graphes}
+Les graphes peuvent être représentés de plusieurs manières en informatique, notamment :
+\begin{itemize}
+    \item \textbf{Matrices d'adjacence} : Un tableau 2D représentant les relations entre les nœuds.
+    \item \textbf{Listes d'adjacence} : Une liste pour chaque nœud, contenant ses voisins.
+\end{itemize}
+
+\subsubsection{Applications des graphes}
+\begin{itemize}
+    \item \textbf{Réseaux sociaux} : Modélisation des relations entre individus.
+    \item \textbf{Systèmes de navigation} : Représentation des routes et intersections.
+    \item \textbf{Organisation de données} : Comme dans les bases de données relationnelles.
+\end{itemize}
+
+\subsubsection{Terminologie des graphes}
+\begin{itemize}
+    \item \textbf{Sommets} : Les éléments de base d'un graphe.
+    \item \textbf{Arêtes} : Les liens entre les sommets.
+    \item \textbf{Voisins} : Les sommets connectés par une arête.
+    \item \textbf{Degré} : Le nombre d'arêtes connectées à un sommet.
+\end{itemize}
+
+
+\subsection{Algorithmes sur les Graphes}\label{subsec:algorithmes-sur-les-graphes}
+
+\subsubsection{Parcours de graphes (BFS et DFS)}
+Le parcours de graphes est une méthode fondamentale pour explorer tous les sommets d'un graphe.
+Il existe deux types principaux de parcours de graphes : le parcours en largeur (BFS) et le parcours en profondeur (DFS).
+
+\paragraph{BFS (Breadth-First Search)}
+Le BFS explore le graphe en largeur.
+Il commence par le sommet source, puis visite tous les sommets voisins, puis leurs voisins, et ainsi de suite.
+Il est souvent utilisé pour trouver le chemin le plus court entre deux sommets dans un graphe non pondéré.
+\newline
+\begin{tikzpicture}[shorten >=1pt, auto, node distance=1.5cm,
+                    thick, main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+
+  \node[main node] (1) {1};
+  \node[main node] (2) [below left of=1] {2};
+  \node[main node] (3) [below right of=1] {3};
+  \node[main node] (4) [below of=2] {4};
+  \node[main node] (5) [below of=3] {5};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node [left] {} (2)
+        edge node [right] {} (3)
+    (2) edge node [left] {} (4)
+    (3) edge node [right] {} (5);
+
+  % Ajouter les flèches pour le parcours BFS
+  \draw[->, red, -Stealth] (1) -- (2);
+  \draw[->, red, -Stealth] (1) -- (3);
+  \draw[->, red, -Stealth] (2) -- (4);
+  \draw[->, red, -Stealth] (3) -- (5);
+\end{tikzpicture}
+
+
+\paragraph{DFS (Depth-First Search)}
+Le DFS explore le graphe en profondeur.
+Il commence par le sommet source, puis visite un sommet voisin, puis un voisin de ce voisin, et ainsi de suite, jusqu'à ce qu'il atteigne un sommet sans voisins non visités, puis il revient en arrière.
+Le DFS est souvent utilisé pour vérifier l'existence d'un chemin entre deux sommets.
+
+\begin{tikzpicture}[shorten >=1pt, auto, node distance=1.5cm,
+                    thick, main node/.style={circle,draw,font=\sffamily\Large\bfseries}]
+
+  \node[main node] (1) {1};
+  \node[main node] (2) [below left of=1] {2};
+  \node[main node] (3) [below right of=1] {3};
+  \node[main node] (4) [below of=2] {4};
+  \node[main node] (5) [below of=3] {5};
+
+  \path[every node/.style={font=\sffamily\small}]
+    (1) edge node [left] {} (2)
+        edge node [right] {} (3)
+    (2) edge node [left] {} (4)
+    (3) edge node [right] {} (5);
+
+  % Ajouter les flèches pour le parcours DFS
+  \draw[->, blue, -Stealth] (1) -- (2);
+  \draw[->, blue, -Stealth] (2) -- (4);
+  \draw[->, blue, -Stealth] (4) -- (3);
+  \draw[->, blue, -Stealth] (3) -- (5);
+\end{tikzpicture}
+
+\subsubsection{Algorithmes de chemins les plus courts}
+Les algorithmes de chemins les plus courts sont utilisés pour trouver le chemin le plus court entre deux sommets dans un graphe.
+Les deux algorithmes les plus connus sont l'algorithme de Dijkstra et l'algorithme de Bellman-Ford.
+
+\paragraph{Algorithme de Dijkstra}
+L'algorithme de Dijkstra est utilisé pour trouver le chemin le plus court entre un sommet source et tous les autres sommets dans un graphe pondéré avec des poids positifs.
+
+\paragraph{Algorithme de Bellman-Ford}
+L'algorithme de Bellman-Ford est utilisé pour trouver le chemin le plus court dans un graphe pondéré, même avec des poids négatifs.
+Cependant, il ne peut pas gérer les cycles de poids négatif.
+
+\subsubsection{Arbres couvrants minimums}
+Un arbre couvrant minimum (ACM) d'un graphe est un sous-graphe qui est un arbre, qui contient tous les sommets du graphe, et dont le poids total (la somme des poids de toutes les arêtes) est minimal.
+Les deux algorithmes les plus connus pour trouver un ACM sont l'algorithme de Prim et l'algorithme de Kruskal.
+
+\subsubsection{Applications algorithmiques}
+Les algorithmes sur les graphes sont utilisés dans de nombreux domaines, tels que les réseaux de télécommunication, les systèmes de navigation, l'optimisation de réseaux, la planification d'itinéraires, la conception de circuits intégrés, et bien d'autres.
+
+\newpage

@@ -1,0 +1,98 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{positioning}
+\usepackage{color} % Ajout du package color
+\geometry{a4paper, margin=1in}
+
+\usepackage{listings}
+\usepackage{hyperref}
+
+\newif\ifdarkmode
+
+% \darkmodetrue % automatiquement commenter ou décommenter dans le cas qu'on veut par le fichier .build
+
+\ifdarkmode
+    \usepackage{xcolor} % Ajout du package xcolor
+    \pagecolor[rgb]{0.1,0.1,0.1} % Couleur de fond (RGB)
+    \color[rgb]{0.9,0.9,0.9} % Couleur du texte (RGB)
+    \lstset{
+        backgroundcolor=\color[rgb]{0.2,0.2,0.2}, % Couleur de fond
+        numbers=left, % Numéros de ligne à gauche
+        numberstyle=\small, % Style des numéros de ligne
+        numbersep=8pt, % Espace entre les numéros de ligne et le code
+        frame = single, % Ajoute un cadre autour du code
+        language=C, % Langage de programmation
+        breaklines=true, % Permet les retours à la ligne automatiques
+        postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space} % Symbole pour les retours à la ligne
+    }
+
+    % Reste de votre document...
+    \hypersetup{
+        colorlinks=true, % Active les liens colorés
+        linkcolor=white, % Couleur des liens internes (par exemple, références croisées)
+        citecolor=white, % Couleur des citations
+        filecolor=magenta, % Couleur des liens de fichiers
+        urlcolor=white % Couleur des URLs
+    }
+\else
+    \lstset{
+        numbers=left, % Numéros de ligne à gauche
+        numberstyle=\small, % Style des numéros de ligne
+        numbersep=8pt, % Espace entre les numéros de ligne et le code
+        frame = single, % Ajoute un cadre autour du code
+        language=C, % Langage de programmation
+        breaklines=true, % Permet les retours à la ligne automatiques
+        postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space} % Symbole pour les retours à la ligne
+    }
+    \hypersetup{
+        colorlinks=true, % Active les liens colorés
+        linkcolor=black, % Couleur des liens internes (par exemple, références croisées)
+        citecolor=black, % Couleur des citations
+        filecolor=magenta, % Couleur des liens de fichiers
+        urlcolor=black % Couleur des URLs
+    }
+\fi
+
+
+
+\usepackage{fancyhdr} % Ajout du package fancyhdr
+\pagestyle{fancy}
+\fancyhf{} % Clear header and footer
+\lfoot{GALLAND Romain - \href{https://github.com/R-Gld}{GitHub} \\ Email : \href{mailto:romain.galland@rgld.fr}{romain.galland@rgld.fr}}\rfoot{\thepage/\pageref{LastPage}} % Right footer
+
+\usepackage{lastpage} % Ajout du package lastpage
+
+
+\title{CC2 du cours d'Algorithmie et Structure de Donnée \\ Fiche de Révision Approfondie : Arbres, BST, Tas, Graphes et Parcours}
+\author{GALLAND Romain\thanks{Merci à ChatGPT}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+\addtocontents{toc}{\protect\color{white}}
+\tableofcontents
+\newpage
+\section*{Introduction}
+Cette fiche de révision couvre en détail les concepts fondamentaux et avancés des arbres, arbres binaires de recherche (BST), tas, graphes et leurs parcours.
+Chaque section comprend des définitions, des exemples de structures de données en C, des algorithmes et des illustrations pour une compréhension complète.
+
+\section{Arbres}\label{sec:arbres}
+\input{arbres}
+
+\section{Graphes}\label{sec:graphes}
+\input{graphes}
+
+\section{Comparaison des Structures de Données : Arbres, BST et Tas}\label{sec:comparaison-structures-donnees}
+\input{comparaison}
+
+\end{document}
