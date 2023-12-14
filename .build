@@ -1,9 +1,8 @@
 #!/bin/bash
-cd "/home/rgld_/01-dev-projects/c-projects/ALGO/PARTIEL_GPT" || exit
 
 # Nom de fichier du document LaTeX
 file="fiche_rev"
-output_dir="/home/rgld_/01-dev-projects/c-projects/ALGO/PARTIEL_GPT/out"
+output_dir="./out"
 
 # Vérifie si le fichier source existe
 if [ ! -f "$file.tex" ]; then
@@ -16,15 +15,13 @@ fi
 
 # Active le mode sombre, compile avec un nom de fichier différent, désactive le mode sombre, compile à nouveau
 sed -i 's/% \\darkmodetrue/\\darkmodetrue/' $file.tex
-pdflatex -output-directory=$output_dir -jobname=fiche_rev_dm $file.tex
-pdflatex -output-directory=$output_dir -jobname=fiche_rev_dm $file.tex
+latexmk -pdf -output-directory=$output_dir -jobname=fiche_rev_dm -interaction=batchmode $file.tex
 
 # Nettoie les fichiers auxiliaires
 find $output_dir -type f -name "fiche_rev_dm.*" ! -name "*.pdf" -delete
 
 sed -i 's/\\darkmodetrue/% \\darkmodetrue/' $file.tex
-pdflatex -output-directory=$output_dir $file.tex
-pdflatex -output-directory=$output_dir $file.tex
+latexmk -pdf -output-directory=$output_dir -interaction=batchmode $file.tex
 
 # Nettoie les fichiers auxiliaires
 find $output_dir -type f -name "$file.*" ! -name "*.pdf" -delete
