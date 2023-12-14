@@ -1,6 +1,6 @@
 # Projet : Algorithmie et Structure de Donnée
 
-Ce projet est une fiche de révision approfondie sur les arbres, les arbres binaires de recherche (BST), les tas, les graphes et leurs parcours. Il comprend des définitions, des exemples de structures de données en C, des algorithmes et des illustrations pour une compréhension complète.
+Ce projet est une fiche de révision approfondie sur les arbres, les arbres binaires de recherche (BST), les tas, les graphes et leurs parcours. Il a été réalisé pour réviser le CC2 d'Algorithmie et Structure de Donnée de 2023 à l'UFR-ST. Il comprend des définitions, des exemples de structures de données en C, des algorithmes et des illustrations pour une compréhension complète.
 
 ## Contenu du projet
 
